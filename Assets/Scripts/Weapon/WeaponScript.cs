@@ -119,6 +119,7 @@ public class WeaponScript : MonoBehaviour
     {
         if (bulletLeft > 0 && canShoot && !reloading)
         {
+            CrosshairScript.instance.setState(2);
             muzzleRef.SetActive(true);
             canShoot = false;
             bulletLeft--;
@@ -197,6 +198,7 @@ public class WeaponScript : MonoBehaviour
 
     private void ResetShoot()
     {
+
         canShoot = true;
 
         if(shooting == true && (fireMode == weaponMode.automatic || (fireMode == weaponMode.semiAuto && semiAutoShoot < semiAutoShootNum)))

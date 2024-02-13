@@ -5,6 +5,7 @@ using UnityEngine;
 public class TargetScript : MonoBehaviour
 {
     [SerializeField] private float GoBackDelay = 15;
+    [SerializeField] private float impactForce = 15;
     private Quaternion initialRotation, targetRotation;
     private bool hit;
     private float delay;
@@ -20,7 +21,7 @@ public class TargetScript : MonoBehaviour
             if(delay <= GoBackDelay/1.5f)
             {
                 delay++;
-                targetRotation = Quaternion.Euler(-150, 0, 0);
+                targetRotation = Quaternion.Euler(impactForce*100, 0, 0);
             }
             else
             {

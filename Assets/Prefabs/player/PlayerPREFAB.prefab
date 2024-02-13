@@ -606,6 +606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchWeaponSpeed: 10
   throwWeaponForce: 10
+  crosshairRef: {fileID: 704938151569320880}
   swaySpeed: 10
   swayMultiplier: 1
   swayClamp: {x: 10, y: 20}

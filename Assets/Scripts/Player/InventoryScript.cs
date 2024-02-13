@@ -165,6 +165,11 @@ public class InventoryScript : MonoBehaviour
             weapons[weapons.Count - 1].transform.rotation = weaponTransform.rotation;
             weapons[weapons.Count - 1].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             actualWeapon = weapons.Count - 1;
+            if(weapons.Count > 0)
+            {
+                CrosshairScript.instance.setState(1);
+            }
+
             //ShowWhichWeapon();
             //weapons[actualWeapon].UpdateTxt();
             weapons[actualWeapon].GrabWeapon();
@@ -207,23 +212,32 @@ public class InventoryScript : MonoBehaviour
                 }
                 //ShowWhichWeapon();
             }
+            else if(weapons.Count == 0) 
+            {
+                CrosshairScript.instance.setState(0);
+            }
         }
     }
     public void Aim(InputAction.CallbackContext context)
     {
         if (!Playermovement.instance.GetPause())
         {
-            if (context.performed && canShoot)
+            if(weapons.Count > 0)
             {
-                if (weapons.Count > actualWeapon)
+                if (context.performed && canShoot)
                 {
-                    weapons[actualWeapon].Reload(false);
-                    isAiming = true;
+                    if (weapons.Count > actualWeapon)
+                    {
+                        weapons[actualWeapon].Reload(false);
+                        isAiming = true;
+                        CrosshairScript.instance.setState(3);
+                    }
                 }
-            }
-            else if (context.canceled)
-            {
-                isAiming = false;
+                else if (context.canceled)
+                {
+                    isAiming = false;
+                    CrosshairScript.instance.setState(1);
+                }
             }
         }
     }

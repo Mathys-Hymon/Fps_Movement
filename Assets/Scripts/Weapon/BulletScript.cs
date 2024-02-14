@@ -12,7 +12,7 @@ public class BulletScript : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, position, bulletSpeed* Time.deltaTime);
+        transform.position += transform.up * bulletSpeed* Time.deltaTime;
 
         if(transform.position == position)
         {
@@ -23,6 +23,13 @@ public class BulletScript : MonoBehaviour
             }
             DestroyBullet();
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject impact = Instantiate(bulletImpact, transform.position, transform.rotation);
+        impact.transform.parent = collision.gameObject.transform;
+        Destroy(gameObject);
     }
 
     private void DestroyBullet()

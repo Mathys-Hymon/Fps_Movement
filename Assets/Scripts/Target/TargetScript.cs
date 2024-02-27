@@ -37,6 +37,5 @@ public class TargetScript : MonoBehaviour
     public void getHit(int damages)
     {
         hit = true;
-        print(damages);
     }
 }

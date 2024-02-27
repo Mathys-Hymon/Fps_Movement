@@ -5,24 +5,28 @@ using UnityEngine;
 public class DamageScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI distanceText;
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
-
+    private float time = 0;
     public void SetDamages(int damage)
     {
         distanceText.text = damage.ToString();
+        GetComponent<Rigidbody>().AddForce((transform.up + transform.right)*10);
     }
 
     void Update()
     {
         transform.LookAt(Playermovement.instance.transform.position);
+        transform.localPosition = 180*
         float distance = Vector3.Distance(transform.position, Playermovement.instance.transform.position);
-        transform.localScale = new Vector3(0.001f * distance / 10f, 0.001f * distance / 10f, 0.001f * distance / 10f);
-        if (distance < 3)
+
+
+        if(time < 5)
         {
-            gameObject.SetActive(false);
+            transform.localScale -= new Vector3(time / 5, time / 5, time / 5);
+            //time += Time.deltaTime;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }

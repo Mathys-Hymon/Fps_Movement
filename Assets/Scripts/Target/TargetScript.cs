@@ -6,6 +6,7 @@ public class TargetScript : MonoBehaviour
 {
     [SerializeField] private float GoBackDelay = 15;
     [SerializeField] private float impactForce = 15;
+    [SerializeField] private GameObject impactText;
     private Quaternion initialRotation, targetRotation;
     private bool hit;
     private float delay;
@@ -37,5 +38,8 @@ public class TargetScript : MonoBehaviour
     public void getHit(int damages)
     {
         hit = true;
+        GameObject text = Instantiate(impactText, transform.position + transform.right*3, Quaternion.identity);
+        text.SetActive(true);
+        text.GetComponent<DamageScript>().SetDamages(damages);
     }
 }

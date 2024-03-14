@@ -35,10 +35,11 @@ public class TargetScript : MonoBehaviour
          transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, (GoBackDelay /3)* Time.deltaTime);
     }
 
-    public void getHit(int damages)
+    public void getHit(int damages, Vector3 ImpactPoint)
     {
         hit = true;
-        GameObject text = Instantiate(impactText, transform.position + transform.right*3, Quaternion.identity);
+        GameObject text = Instantiate(impactText, transform.position, Quaternion.identity);
+        text.transform.position = ImpactPoint;
         text.SetActive(true);
         text.GetComponent<DamageScript>().SetDamages(damages);
     }

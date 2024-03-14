@@ -142,7 +142,7 @@ public class WeaponScript : MonoBehaviour
                 }
                 if(hit.collider.gameObject.GetComponent<TargetScript>() != null)
                 {
-                    hit.collider.gameObject.GetComponent<TargetScript>().getHit(newDamage);
+                    hit.collider.gameObject.GetComponent<TargetScript>().getHit(newDamage, hit.point);
                 }
             }
                 GameObject bulletTrail = Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);

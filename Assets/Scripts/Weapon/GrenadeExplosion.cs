@@ -24,11 +24,12 @@ public class GrenadeExplosion : MonoBehaviour
             GameObject obj = collider.gameObject;
             if (obj.CompareTag("Enemy"))
             {
-                obj.GetComponent<EnemyBehavior>().TakeDamage(100);
+                distance = Vector3.Distance(transform.position, collider.gameObject.transform.position);
+                obj.GetComponent<TargetScript>().getHit(110 / distance, obj.gameObject.transform.position);
             }
             else if (obj.CompareTag("Player"))
             {
-                obj.GetComponent<PlayerLife>().TakeDamages(110/distance);
+                obj.GetComponent<PlayerLife>().TakeDamages(110 / distance);
             }
         }
         Invoke(nameof(DestroyLight), 0.2f);

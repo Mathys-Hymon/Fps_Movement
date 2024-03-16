@@ -27,9 +27,12 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject impact = Instantiate(bulletImpact, transform.position, transform.rotation);
-        impact.transform.parent = collision.gameObject.transform;
-        Destroy(gameObject);
+        if(collision.gameObject.tag != "Projectile") 
+        {
+            GameObject impact = Instantiate(bulletImpact, transform.position, transform.rotation);
+            impact.transform.parent = collision.gameObject.transform;
+            Destroy(gameObject);
+        }
     }
 
     private void DestroyBullet()

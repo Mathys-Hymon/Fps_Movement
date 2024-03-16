@@ -11,6 +11,7 @@ TagManager:
   - M107
   - Uzi
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

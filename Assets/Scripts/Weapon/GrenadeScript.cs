@@ -33,7 +33,7 @@ public class GrenadeScript : MonoBehaviour
         if (context.performed && grenadeAmount > 0)
         {
             grenadeAmount--;
-            HUDManager.instance.UpdateGrenadeTxt(grenadeAmount);
+            //HUDManager.instance.UpdateGrenadeTxt(grenadeAmount);
             GameObject lastGrenade = Instantiate(grenade, grenadePosition.position + transform.forward, grenadePosition.rotation);
             if (PlayerCam.instance.AimCenter().distance == 0)
             {
